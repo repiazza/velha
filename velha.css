@@ -365,3 +365,13 @@ body{
     transform: translate(-10px, -23px) scale(0.5) rotate(230deg);
   }
   }
+
+@keyframes opacity {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
