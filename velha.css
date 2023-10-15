@@ -21,6 +21,7 @@ body {
     height: 100vh;
     overflow: hidden;
     background-color: rgba(73, 73, 73, 0.833);
+    position: relative;
 }
 
 div.loading {
@@ -30,6 +31,13 @@ div.loading {
     border-radius: 50%;
     border-top-color: rgb(120, 157, 170);
     animation: loading 1s ease-in-out forwards 3, opacity 1s 1.8s forwards;
+}
+
+div.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 table {
@@ -115,6 +123,7 @@ td#n {
 div.one {
     width: 100vw;
     height: 100vh;
+    z-index: 1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -126,6 +135,7 @@ div.two {
     align-items: center;
     flex-direction: column;
     opacity: 0;
+    z-index: 2;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -381,9 +391,60 @@ body{
     }
 }
 
-div.confete {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+div#confetes {
+  height: 100vh;
+  width: 100vw;
+  display: none;
+  z-index: 3;
+  position: fixed;
+  top: 0;
+  left: 0%;
+  opacity: 0;
+}
+
+@keyframes opacityC {
+  from {
+      opacity: 0;
+  }
+
+  to {
+      opacity: 1;
+  }
+}
+
+div.vencedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  display: none;
+  color: whitesmoke;
+  font-size: 2em;
+  font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  height: 100vh;
+  width: 100vw;
+
+  /* sobreposição */
+
+  z-index: 4;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+svg#Layer_1 {
+  display: none;
+  z-index: 5;
+}
+
+div.none {
+  z-index: 6;
+}
+
+button {
+  cursor: pointer;
 }
