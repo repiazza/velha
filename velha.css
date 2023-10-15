@@ -144,6 +144,11 @@ div.two {
     }
 }
 
+p {
+  margin: 0;
+  padding: 0;
+}
+
 body{
   padding-left:100px;
   }
