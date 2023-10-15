@@ -25,12 +25,15 @@ function doTurn() {
   playerPiece = playerPiece == "X" ? "O" : "X";
 }
 
-function outputPElement(piece) {
+function outputPElement(piece, objelem) {
+  var p = document.createElement("p");
   color = "";
   if (piece == "X") color = "red";
   else if (piece == "O") color = "blue";
 
-  return '<p style="color:' + color + '">' + piece + "</p>";
+  p.style.color = color;
+  p.innerHTML = piece;
+  objelem.appendChild(p);
 }
 
 function doCheckWinner() {
@@ -44,21 +47,27 @@ function doCheckWinner() {
   });
   winnerSequences.map((row) => {
     console.debug("winnerSequences row=" + row);
-    console.log(
-      "X Venceu? [" + row.every((square) => xArr.includes(square)) + "]"
-    );
-    console.log(
-      "O Venceu? [" + row.every((square) => oArr.includes(square)) + "]"
-    );
+
+    if (row.every((square) => xArr.includes(square))) {
+      alert("VENCEDOR: Jogador P1(peça X) ");
+    }
+    if (row.every((square) => oArr.includes(square))) {
+      msg = "VENCEDOR: Jogador PC(peça O) ";
+      if (!gameMode) msg = "VENCEDOR: Jogador P2(peça O) ";
+
+      alert(msg);
+    }
   });
 }
 
 function handleQuadrant() {
   // Clique em um quadrante do jogo...
-  if (this.innerHTML != "") return;
+  // if (this.childNodes[0].textContent != "&nbsp;") return;
+  if (this.textContent != "&nbsp;") return;
 
   // this.innerHTML = playerPiece;
-  this.innerHTML = outputPElement(playerPiece);
+  // this.childNodes[0].remove();
+  outputPElement(playerPiece, this);
   this.style.animation = "scale 0.5s forwards";
 
   doCheckWinner(); // Verificamos Vencedores ou VELHA
@@ -69,7 +78,6 @@ function handleQuadrant() {
 document.addEventListener("DOMContentLoaded", function () {
   consoleTrace("DOMContentLoaded -- init");
   document.querySelectorAll("td").forEach((element) => {
-    console.log(element.id);
     element.addEventListener("click", handleQuadrant);
   });
   playerName = prompt("Informe o seu nome:", "");
