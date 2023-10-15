@@ -32,6 +32,7 @@ function outputPElement(piece, objelem) {
   else if (piece == "O") color = "blue";
 
   p.style.color = color;
+  p.style.margin = "0px";
   p.innerHTML = piece;
   objelem.appendChild(p);
 }
@@ -63,7 +64,7 @@ function doCheckWinner() {
 function handleQuadrant() {
   // Clique em um quadrante do jogo...
   // if (this.childNodes[0].textContent != "&nbsp;") return;
-  if (this.textContent != "&nbsp;") return;
+  if (this.textContent != "") return;
 
   // this.innerHTML = playerPiece;
   // this.childNodes[0].remove();
